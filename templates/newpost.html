@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Create a Post</h2>
+    <form action="/newpost" method="post">
+        <div>
+            {% if titleError %}
+            <div class="error">
+                {{ titleError }}
+            </div>
+            {% endif %}
+            <label>
+                Title:
+                <input type="text" name='post-title' value="{{post_title}}" />
+            </label>
+        </div>
+        <div class="textarea">
+            {% if bodyError %}
+            <div class="error">
+                {{ bodyError }}
+            </div>
+            {% endif %}
+            <label>
+                Post:
+                <textarea name="post-body" rows="10" cols="50">{{post_body}}</textarea>
+            </label>
+        </div>
+        <div class="button">
+            <input type="submit" value='Add Post' />
+        </div>
+    </form>
+    {% endblock %}

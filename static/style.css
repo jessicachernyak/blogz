@@ -1,0 +1,13 @@
+.textarea {
+    margin: 20px 10px 10px 0;
+}
+
+.button {
+    margin-top: 20px;
+}
+
+.error{
+    color: red;
+    font-size: 10pt;
+    margin: 5px 0 5px 0;
+}
