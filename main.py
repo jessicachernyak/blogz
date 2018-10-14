@@ -46,7 +46,7 @@ def create_post():
         new_post = Blog(post_title, post_body)
         db.session.add(new_post)
         db.session.commit()
-        return redirect('/blog')
+        return redirect('/blog?id=' + str(new_post.id))
     return render_template('newpost.html')
 
 def tryAgain():
@@ -56,8 +56,14 @@ def tryAgain():
     
 @app.route('/blog')
 def blog_posts():
+    post_id = request.args.get('id')
+    if post_id:
+        post = Blog.query.get(post_id)
+        print(post)
+        return render_template('post.html', post_title=post.title, post_body=post.body)
     posts = Blog.query.all()
     return render_template('blog.html', posts=posts)
 
+    
 if __name__ == '__main__':
     app.run()
