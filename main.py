@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://build-a-blog:password@localhost:3306/build-a-blog'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://blogz:password@localhost:3306/blogz'
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
 
@@ -17,6 +17,17 @@ class Blog(db.Model):
     def __init__(self, title, body):
         self.title = title
         self.body = body
+
+class User(db.Model):
+
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(25))
+    password = db.Column(db.String(120))
+   #  blogs = db.Column(db.)
+
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
 
 
 def checkTitleError(post_title):
@@ -64,6 +75,15 @@ def blog_posts():
     posts = Blog.query.all()
     return render_template('blog.html', posts=posts)
 
+# @app.route('/signup')
+
+
+# @app.route('/login')
+
+
+# @app.route('/index')
+
+# @app.route('/logout')
     
 if __name__ == '__main__':
     app.run()
