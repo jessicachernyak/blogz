@@ -3,8 +3,19 @@
     <head>
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <title>{{title}}</title>
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            <ul>
+            {% for category,message in messages %}
+                <li class="{{category}}">{{message}}</li>
+            {% endfor %}
+            </ul>
+        {% endwith %}
         <h1>Build-a-Blog</h1>
         <nav>
+            <a href="/signup">Create Account</a> |
+            <a href="/login">Login</a> |
+            <a href="/logout">Logout</a> |
+            <a href="/">Home</a> |
             <a href="/blog">Blog</a> | 
             <a href="/newpost">New Post</a>
         </nav>

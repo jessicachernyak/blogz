@@ -1,6 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
-
-
+<form action="/login" method="post">
+    <div>
+        <label>
+            Username
+            {% if username %}
+            <input type="text" name="username" value={{username}} />
+            {% else %}
+            <input type="text" name="username" />
+            {% endif %}
+        </label>
+    </div>
+    {% if username_error %}
+    <div class="error">
+        {{ username_error }}
+    </div>
+    {% endif %}
+    <div>
+        <label>
+            Password
+            <input type="password" name="password" />
+        </label>
+    </div>
+    {% if password_error %}
+    <div class="error">
+        {{ password_error }}
+    </div>
+    {% endif %}
+    <div>
+        <input type="submit" value="Login"/>
+    </div>
+</form>
 
 {% endblock %}

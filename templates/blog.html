@@ -2,7 +2,7 @@
 {% block content %}
     <h2>Posts</h2>
     {% for post in posts %}
-    <a href="/blog?id={{post.id}}" >
+    <a href="/blog?id={{user.id}}" >
         <h3>{{post.title}}</h3>
     </a>
     <p>{{post.body}}</p>
