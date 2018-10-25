@@ -87,9 +87,9 @@ def blog():
     if user_id:
         blog_posts = Blog.query.filter_by(owner_id=user_id)
         print(blog_posts)
-        return render_template('/blog.html', post_title=post.title, post_body=post.body)
+        return render_template('blog.html', blog_posts=blog_posts)
 
-    return render_template('blog.html', posts=posts)
+    # return render_template('blog.html', posts=posts)
 
 @app.route('/signup', methods=['POST', 'GET'])
 def signup():
