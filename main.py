@@ -80,16 +80,15 @@ def blog():
     post_id = request.args.get('id')
     if post_id:
         post = Blog.query.get(post_id)
-        print(post)
-        return render_template('post.html', post_title=post.title, post_body=post.body)
+        return render_template('post.html', post=post)
     posts = Blog.query.all()
     user_id = request.args.get('user')
     if user_id:
         blog_posts = Blog.query.filter_by(owner_id=user_id)
-        print(blog_posts)
-        return render_template('blog.html', blog_posts=blog_posts)
+        # print(blog_posts)
+        return render_template('blog.html', posts=blog_posts)
 
-    # return render_template('blog.html', posts=posts)
+    return render_template('blog.html', posts=posts)
 
 @app.route('/signup', methods=['POST', 'GET'])
 def signup():
@@ -154,7 +153,7 @@ def login():
         if user and user.password == password:
             session['username'] = username
             flash("Logged in")
-            return redirect('/login')
+            return redirect('/')
         elif user and user.password != password:
             flash("Your password is invalid.")
         else:
